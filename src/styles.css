@@ -1,0 +1,128 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-panel: var(--panel);
+  --color-panel-foreground: var(--panel-foreground);
+
+  --shadow-panel: 0 1px 0 0 var(--border-strong) inset, 0 20px 50px -20px rgb(0 0 0 / 0.5);
+  --shadow-glow: 0 0 40px -10px var(--ring);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.002 270);
+  --foreground: oklch(0.18 0.01 270);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 270);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 270);
+  --primary: oklch(0.62 0.18 35);
+  --primary-foreground: oklch(0.99 0.005 80);
+  --secondary: oklch(0.95 0.005 270);
+  --secondary-foreground: oklch(0.2 0.01 270);
+  --muted: oklch(0.95 0.005 270);
+  --muted-foreground: oklch(0.5 0.01 270);
+  --accent: oklch(0.93 0.02 50);
+  --accent-foreground: oklch(0.2 0.01 270);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.99 0.005 80);
+  --border: oklch(0.9 0.005 270);
+  --border-strong: oklch(0.85 0.005 270);
+  --input: oklch(0.92 0.005 270);
+  --ring: oklch(0.62 0.18 35);
+  --panel: oklch(0.98 0.003 270);
+  --panel-foreground: oklch(0.18 0.01 270);
+}
+
+.dark {
+  --background: oklch(0.16 0.008 265);
+  --foreground: oklch(0.96 0.005 270);
+  --card: oklch(0.20 0.01 265);
+  --card-foreground: oklch(0.96 0.005 270);
+  --popover: oklch(0.20 0.01 265);
+  --popover-foreground: oklch(0.96 0.005 270);
+  --primary: oklch(0.72 0.16 40);
+  --primary-foreground: oklch(0.15 0.01 265);
+  --secondary: oklch(0.24 0.01 265);
+  --secondary-foreground: oklch(0.96 0.005 270);
+  --muted: oklch(0.24 0.01 265);
+  --muted-foreground: oklch(0.65 0.01 265);
+  --accent: oklch(0.28 0.03 40);
+  --accent-foreground: oklch(0.96 0.005 270);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.99 0.005 80);
+  --border: oklch(0.28 0.01 265);
+  --border-strong: oklch(0.34 0.012 265);
+  --input: oklch(0.26 0.01 265);
+  --ring: oklch(0.72 0.16 40);
+  --panel: oklch(0.18 0.008 265);
+  --panel-foreground: oklch(0.96 0.005 270);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body, #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .font-display { font-family: var(--font-display); }
+  .font-mono { font-family: var(--font-mono); }
+}
+
+@layer utilities {
+  .panel {
+    background-color: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
