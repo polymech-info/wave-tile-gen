@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Open-Source Wave Panel Generator for CNC | Polymech</title>
+    <meta
+      name="description"
+      content="Open-source tool for parametric wave panels. Shape a heightfield in the browser and download an STL for CNC or 3D printing. Settings stay on this device."
+    />
+    <link rel="canonical" href="https://polymech.info/apps/wave-studio/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Polymech" />
+    <meta property="og:title" content="Open-Source Wave Panel Generator for CNC | Polymech" />
+    <meta
+      property="og:description"
+      content="Open-source tool for parametric wave panels. Shape a heightfield in the browser and download an STL for CNC or 3D printing. Settings stay on this device."
+    />
+    <meta property="og:url" content="https://polymech.info/apps/wave-studio/" />
+    <meta property="og:image" content="https://polymech.info/Color%20logo%20-%20no%20background.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Open-Source Wave Panel Generator for CNC | Polymech" />
+    <meta
+      name="twitter:description"
+      content="Open-source tool for parametric wave panels. Shape a heightfield in the browser and download an STL for CNC or 3D printing. Settings stay on this device."
+    />
+    <meta name="twitter:image" content="https://polymech.info/Color%20logo%20-%20no%20background.png" />
+    <link rel="icon" href="https://polymech.info/favicon.ico" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            "name": "Wave Studio",
+            "applicationCategory": "DesignApplication",
+            "operatingSystem": "Web",
+            "url": "https://polymech.info/apps/wave-studio/",
+            "description": "Open-source tool for parametric wave panels. Shape a heightfield in the browser and download an STL for CNC or 3D printing. Settings stay on this device.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Polymech",
+              "url": "https://polymech.info/en/"
+            }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Polymech",
+                "item": "https://polymech.info/en/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Wave Studio",
+                "item": "https://polymech.info/apps/wave-studio/"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --line: #e2e6e3;
+        --ink: #1c211e;
+        --muted: #5c6560;
+        --amber: #e8a317;
+        --amber-ink: #1a1408;
+        --link: #8a4b08;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--ink);
+        background: var(--bg);
+      }
+      a { color: var(--link); text-underline-offset: 3px; }
+      a:hover { color: #5c3204; }
+      .wrap { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
+      .crumb {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin: 0;
+        padding: 22px 0 8px;
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .crumb a { color: var(--muted); text-decoration: none; }
+      .crumb a:hover { color: var(--ink); }
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 36px;
+        align-items: start;
+        padding: 18px 0 28px;
+      }
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2rem, 4vw, 3.15rem);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        font-weight: 650;
+      }
+      .lede { margin: 0 0 22px; max-width: 40rem; color: #2a312d; }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 8px; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 16px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 650;
+      }
+      .btn-go { background: var(--amber); color: var(--amber-ink); }
+      .btn-go:hover { background: #ffd36a; color: var(--amber-ink); }
+      .btn-src { border: 1px solid #c9d0cb; color: var(--ink); background: #fff; }
+      .btn-src:hover { border-color: var(--amber); color: var(--ink); }
+      .card {
+        margin: 0;
+        padding: 16px 16px 18px;
+        background: #f7f8f6;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        box-shadow: 0 12px 32px rgba(28, 33, 30, 0.06);
+      }
+      .card figcaption {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .dims { margin: 0; font-family: ui-monospace, Consolas, monospace; font-size: 15px; line-height: 1.7; }
+      .dims span { color: var(--muted); }
+      main { padding-bottom: 48px; }
+      section { padding: 8px 0 22px; border-top: 1px solid var(--line); }
+      h2 { margin: 22px 0 8px; font-size: 1.35rem; letter-spacing: -0.02em; }
+      h3 { margin: 18px 0 6px; font-size: 1.05rem; }
+      p { max-width: 44rem; }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 18px 0 32px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      @media (max-width: 800px) {
+        .hero { grid-template-columns: 1fr; gap: 22px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <nav aria-label="Breadcrumb">
+        <p class="crumb">
+          <a href="https://polymech.info/en/">Polymech</a>
+          <span aria-hidden="true">/</span>
+          <span>Wave Studio</span>
+        </p>
+      </nav>
+      <header class="hero">
+        <div>
+          <h1>Open-source tool for parametric wave panels</h1>
+          <p class="lede">
+            Polymech publishes Wave Studio for panels you can machine. Shape a heightfield in the browser, watch the surface, and download an STL. The settings stay on this device.
+          </p>
+          <p class="actions">
+            <a class="btn btn-go" href="./app/">Open Wave Studio</a>
+            <a class="btn btn-src" href="https://github.com/polymech-info/wave-tile-gen">Wave Studio source on GitHub</a>
+          </p>
+        </div>
+        <figure class="card">
+          <figcaption>Default stock</figcaption>
+          <p class="dims">
+            500 × 500 × 60 mm<br />
+            <span>base thickness and wave height sit inside Z</span>
+          </p>
+        </figure>
+      </header>
+      <main>
+        <section aria-labelledby="shape">
+          <h2 id="shape">Shape a panel</h2>
+          <p>
+            Pick a pattern — dunes, ripples, topographic, weave, flow field, spiral, or sculpt — then set the stock in millimetres. Frequency, phase, warp, and amplitude change the heightfield. The preview is the same mesh the STL uses.
+          </p>
+          <h3>Stock and height</h3>
+          <p>
+            X and Y are the panel face. Z is the block. Base thickness is the solid under the wave, and amplitude is how far the surface rises above that base. Both stay inside the stock height.
+          </p>
+          <h3>A file you can cut</h3>
+          <p>
+            Export STL downloads a solid of that mesh. Export JSON saves the sliders; import JSON loads them back. The STL is the part. Prove the toolpath on the machine.
+          </p>
+        </section>
+        <section aria-labelledby="local">
+          <h2 id="local">Settings stay in this browser</h2>
+          <p>
+            The current sliders and any named presets you save are stored in this browser for this site. Nothing from the panel is uploaded to Polymech. Another browser starts again from the defaults.
+          </p>
+        </section>
+        <section aria-labelledby="source">
+          <h2 id="source">Source</h2>
+          <p>
+            Wave Studio is MIT licensed in the
+            <a href="https://github.com/polymech-info/wave-tile-gen">wave tile generator repository on GitHub</a>.
+            It is part of the open-source tools Polymech publishes while building manufacturing software.
+          </p>
+        </section>
+      </main>
+      <footer>
+        <a href="https://polymech.info/en/">Polymech</a>
+        ·
+        <a href="./app/">Open Wave Studio</a>
+        ·
+        <a href="https://github.com/polymech-info/wave-tile-gen">GitHub</a>
+      </footer>
+    </div>
+  </body>
+</html>
