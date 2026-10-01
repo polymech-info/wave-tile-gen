@@ -1,5 +1,8 @@
 # Wave Studio
 
+[Demo](https://polymech.info/apps/wave-studio/) | Provided by [Polymech](https://service.polymech.info/) | [Github Sourcecode](https://github.com/polymech-info/wave-tile-gen)
+
+
 Browser tool for parametric wave panels. Adjust the heightfield, preview it, and download an STL for CNC or 3D printing.
 
 ```bash
